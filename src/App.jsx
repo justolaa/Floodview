@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import Home from './Pages/Home'
+// import { useState, useEffect } from 'react'
+// import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+// import UserFeedbackForm from './Pages/FloodReportForm'
+// import MapView from './Pages/MapView'
+import HeatmapView from './Pages/HeatMap'
 function App() {
   return (
     
@@ -9,10 +11,12 @@ function App() {
       {/* <ScrollToTop/> */}
       {/* <ToastContainer /> */}
       {/* <Navbar/> */}
-      <Routes>
-          <Route path='/' element={<Home/>}></Route> 
-    
-      </Routes>
+     <div>
+      <h1 style={{ textAlign: 'center', margin: '10px 0' }}>Lagos Flood Risk Map</h1>
+      {/* <MapView /> */}
+      {/* <UserFeedbackForm/> */}
+      <HeatmapView/>
+    </div>
     </>
   )
 }
