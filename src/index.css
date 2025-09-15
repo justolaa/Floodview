@@ -1,6 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+  ============================================
+  Custom Animation for Map Overlay
+  ============================================
+*/
+
+/* Define the fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.7;
+    /* This should match the opacity set in your component */
+  }
+}
+
+/* Apply the animation to the image inside the Leaflet image overlay pane */
+.leaflet-image-layer {
+  animation: fadeIn 1s ease-in-out;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #242424;
@@ -12,76 +36,3 @@
   z-index: 10;
 }
 
-/* 
-  ============================================
-  CSS for leaflet-splitmap plugin
-  ============================================
-*/
-
-.leaflet-splitmap {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  background: none;
-}
-
-.leaflet-splitmap .leaflet-control {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border: none;
-}
-
-.leaflet-splitmap-divider {
-  position: absolute;
-  width: 4px;
-  height: 100%;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-top: none;
-  border-bottom: none;
-  z-index: 800;
-  /* Ensure it's on top */
-  pointer-events: none;
-  /* Let clicks go through the line */
-}
-
-.leaflet-splitmap-handle {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  left: 50%;
-  top: 50%;
-  margin-left: -20px;
-  margin-top: -20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  cursor: ew-resize;
-  /* East-West resize cursor */
-  z-index: 801;
-  pointer-events: all;
-  /* Make sure the handle is clickable/draggable */
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-}
-
-.leaflet-splitmap-handle:before,
-.leaflet-splitmap-handle:after {
-  content: '';
-  position: absolute;
-  width: 1px;
-  height: 12px;
-  top: 50%;
-  margin-top: -6px;
-  background-color: #aaa;
-}
-
-.leaflet-splitmap-handle:before {
-  left: 12px;
-}
-
-.leaflet-splitmap-handle:after {
-  right: 12px;
-}

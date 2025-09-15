@@ -8,6 +8,7 @@ import StatsDisplay from './Components/StatsDisplay';
 import ComparisonMap from './Components/ComparisonMap';
 import AboutModal from './Components/AboutModal';
 import Legend from './Components/Legend';
+import Preloader from './Components/Preloader';
 import './App.css';
 
 // We need the bounds here to pass to the side-by-side control
@@ -18,6 +19,9 @@ const surulereBounds = [
  
 
 function App() {
+  // --- New State for Preloader ---
+  // It starts as 'true' and we will set it to 'false' after a delay.
+  const [isLoading, setIsLoading] = useState(true);
   // State to hold the current selections
   const [returnPeriod, setReturnPeriod] = useState('100'); // Default to 100-year
   const [drainageScenario, setDrainageScenario] = useState('blocked'); // Default to blocked
@@ -31,6 +35,17 @@ function App() {
   // A more advanced version could have dropdowns for both sides.
    // Fetch existing reports when the app loads
    const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+
+   // This useEffect will run only once when the App component first mounts.
+  useEffect(() => {
+    // Set a timer to simulate loading and give the user time to read the title.
+    const timer = setTimeout(() => {
+      setIsLoading(false); // This will trigger the preloader animation
+    }, 2500); // 2.5 seconds
+
+    // Cleanup function to clear the timer if the component unmounts
+    return () => clearTimeout(timer);
+  }, []); // The empty array [] ensures this effect runs only once.
 
    useEffect(() => {
     const fetchReports = async () => {
@@ -77,10 +92,17 @@ function App() {
 
 
   return (
-    <div className="App relative h-screen ">
-      {/* We'll move the header and create a controls component */}
-      <Controls 
-        returnPeriod={returnPeriod}
+    <>
+      <Preloader isLoading={isLoading} />
+
+      {/* This div wraps your entire main application */}
+      {/* We make it fade in smoothly as the preloader disappears */}
+      <div 
+        className={`App relative h-screen w-screen transition-opacity duration-500
+           ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+      >
+        <Controls 
+          returnPeriod={returnPeriod}
         setReturnPeriod={setReturnPeriod}
         drainageScenario={drainageScenario}
         setDrainageScenario={setDrainageScenario}
@@ -90,10 +112,10 @@ function App() {
         disableControls={isComparing} 
         // Pass the function to open the modal
         onAboutClick={() => setIsAboutModalOpen(true)}
-      />
-
-       <div className="absolute top-0 left-0 w-full h-full z-0">
-            {isComparing ? (
+        />
+        
+        <div className="absolute top-0 left-0 w-full h-full z-0">
+          {isComparing ? (
                 <ComparisonMap 
                     leftLayerUrl={leftLayer.url}
                     rightLayerUrl={rightLayer.url}
@@ -105,15 +127,15 @@ function App() {
                     onMapClick={handleMapClick}
                 />
             )}
-            </div>
-            
-            <ReportForm 
-                location={reportLocation}
+        </div>
+        
+        <ReportForm 
+          location={reportLocation}
                 onClose={handleCloseForm}
                 onReportSubmitted={handleReportSubmitted}
-            />
-           
-            {!isComparing && (
+        />
+        
+        {!isComparing && (
         <div className="absolute bottom-4 left-4 z-20 flex flex-col space-y-2">
           <Legend />
           <StatsDisplay
@@ -122,15 +144,15 @@ function App() {
           />
         </div>
       )}
-
-            {/* Render the About Modal */}
+        
+        {/* Render the About Modal */}
 
       <AboutModal 
         isOpen={isAboutModalOpen}
         onClose={() => setIsAboutModalOpen(false)}
       />
-      
-        </div>
+      </div>
+    </>  
   );
 }
 
