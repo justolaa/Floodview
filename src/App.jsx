@@ -35,7 +35,7 @@ function App() {
    useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get('${import.meta.env.VITE_API_BASE_URL}/api/reports');
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/reports`);
         setUserReports(response.data);
       } catch (err) {
         console.error("Failed to fetch reports", err);

@@ -23,7 +23,7 @@ const ReportForm = ({ location, onClose, onReportSubmitted }) => {
             };
             
             // The URL should point to your backend's endpoint
-            const response = await axios.post('${import.meta.env.VITE_API_BASE_URL}/api/reports', newReport);
+            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/reports`, newReport);
             
             // Call the callback function to update the map with the new report
             onReportSubmitted(response.data);
