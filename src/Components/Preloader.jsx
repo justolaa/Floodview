@@ -30,7 +30,7 @@ const Preloader = ({ isLoading }) => {
 
    return (
         <div 
-            className={`fixed inset-0 bg-gray-900 z-50 flex overflow-hidden transition-opacity duration-500 ease-in-out ${isHiding ? 'opacity-0' : 'opacity-100'}`}
+            className={`fixed inset-0 bg-[#3a2d21] z-50 flex overflow-hidden transition-opacity duration-500 ease-in-out ${isHiding ? 'opacity-0' : 'opacity-100'}`}
         >
             {/* Left Door */}
             <div 

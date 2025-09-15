@@ -98,7 +98,7 @@ function App() {
       {/* This div wraps your entire main application */}
       {/* We make it fade in smoothly as the preloader disappears */}
       <div 
-        className={`App relative h-screen w-screen transition-opacity duration-500
+        className={`App relative h-screen transition-opacity duration-500
            ${isLoading ? 'opacity-0' : 'opacity-100'}`}
       >
         <Controls 
