@@ -9,7 +9,10 @@ const Controls = ({ returnPeriod, setReturnPeriod, drainageScenario, setDrainage
   return (
     <div className="absolute top-0 left-0 w-full bg-white bg-opacity-90 p-4 z-20 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl md:text-2xl font-bold text-gray-800">Surulere Flood Hazard Map</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-gray-800 underline decoration-2 decoration-black underline-offset-4">
+  Surulere Flood Hazard Map
+</h1>
+
         
         <div className="flex items-center space-x-4">
           {/* Return Period Dropdown */}
@@ -20,7 +23,7 @@ const Controls = ({ returnPeriod, setReturnPeriod, drainageScenario, setDrainage
             <select
               id="return-period"
               name="return-period"
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-2 border-black focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               value={returnPeriod}
               onChange={(e) => setReturnPeriod(e.target.value)}
             >
@@ -40,7 +43,7 @@ const Controls = ({ returnPeriod, setReturnPeriod, drainageScenario, setDrainage
             <select
               id="drainage-scenario"
               name="drainage-scenario"
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-2 border-black focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               value={drainageScenario}
               onChange={(e) => setDrainageScenario(e.target.value)}
             >
@@ -64,7 +67,7 @@ const Controls = ({ returnPeriod, setReturnPeriod, drainageScenario, setDrainage
                 />
                 <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
             </label>
-            
+
             {/* About Button - NEW */}
           <button
             onClick={onAboutClick}
